@@ -1,0 +1,13 @@
+body { 
+	padding: 0; 
+	margin: 0; 
+	background: #e2c6c2; 
+	font-size: 15px; 
+	line-height: 1.3; 
+	font-family: Arial, Helvetica, sans-serif; 
+	color: #333333; 
+}
+
+.wrapper { background: url("../img/bg.jpg") no-repeat #e2c6c2; min-width: 768px; min-height: 600px }
+.logo { position: relative; top: 38px; left: 348px; heifght: 128px; width: 312px; }
+.window { position: relative; background: url("../img/window.jpg") #fff; top: 170px; left: 260px}
