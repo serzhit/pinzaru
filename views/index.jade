@@ -19,9 +19,27 @@ html(lang='ru-RU')
       .window
         #chat
           #messages
-            #lines
+            #l_message
+              img(src="img/lesya_av.jpg", alt="Леся")
+              img(src="img/l_chat.png")
+              div#l_msg Привет, родное сердце! Как всегда, я опоздада на поезд, а он не пришел!
+            #a_message
+              img(src="img/andrey_av.jpg", alt="Андрей")
+              img(src="img/a_chat.png")
+              div#a_msg Привет, родное сердце! Ничего, я все равно тебя жду, проголодался очень!!   
+            #l_message
+              img(src="img/lesya_av.jpg", alt="Леся")
+              img(src="img/l_chat.png")
+              div#l_msg Хорошо, еду!
           form#send-message
             input#message
+            input#heart(type="image", src="img/heart.png")
+            input#hellowin(type="image", src="img/hellowin.png")
+            input#shop(type="image", src="img/shopping.png")
+            input#garbage(type="image", src="img/garbage.png")
+            input#phone(type="image", src="img/phone.png")
+            input#sms(type="checkbox")
+            span Дублировать по SMS
             button Отправить
 
         

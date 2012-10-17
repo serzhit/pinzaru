@@ -12,10 +12,10 @@ body {
 .logo { position: relative; top: 38px; left: 348px; height: 128px; width: 312px; padding: 0; margin:0 }
 .window { position: relative; background: url("../img/window.jpg") #fff; top: 42px; left: 260px; height: 460px; width: 479px;}
 
-#chat { position: relative; top: 20px; left: 30px; width: 420px; height: 350px}
+#chat { position: relative; top: 20px; left: 30px; width: 420px;}
 
 #messages {
-  height: 335px;
+  height: 310px;
   background: #fff;
 }
 #messages em {
@@ -36,7 +36,7 @@ body {
   background: #fafafa;
 }
 #messages #lines {
-  height: 355px;
+  height: 310px;
   overflow: auto;
   overflow-x: hidden;
   overflow-y: auto;
@@ -68,64 +68,101 @@ body {
   -webkit-border-radius: 3px;
 }
 
+#l_message {margin: 0 15px; vertical-align: top; display: inline-block;}
+#l_message img {float:left;}
+#l_msg {
+  background-color: #fcacb9; 
+  color: #000; 
+  padding: 10px 10px;
+  margin: 0 0 10px 58px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  }
+
+#a_message {margin: 0 15px; vertical-align: top; display: inline-block; float: right;}
+#a_message img {float:right;}
+#a_msg {
+  background-color: #ade0ff; 
+  color: #000; 
+  padding: 10px 10px;
+  margin: 0 61px 10px 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  }
+
+
 #send-message {
-  background: #fff;
+  height: 60px;
+  margin: 0 10px;
+  background: #dfb0a8;
   position: relative;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
 }
-#send-message input {
-  border-left: 1px dotted;
-  border-top: 1px dotted;
-  border-right: none;
-  border-bottom: none;
-  height: 30px;
-  padding: 0 10px;
-  line-height: 30px;
+#message {
+  border: none;
+  margin: 2px 2px;
+  height: 26px;
+  width: 396px;
+  line-height: 26px;
   vertical-align: middle;
-  width: 400px;
+  font-family: "lucida grande", sans-serif;
+  font-size: 16px;
 }
-#send-message input:focus {
+#message:focus {
   outline: 0;
 }
+
+#heart, #hellowin, #shop, #garbage, #phone { width: 22px; margin: 3px 5px;}
+input#sms {width: 20px; height: 20px; }
+
+#send-message span {font-size: 12px; color: #fff }
+
 #send-message button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
+float: right
 }
 button {
-  margin: 0;
+  margin: 0 3px;
+  height: 26px;
+  width: 90px;
+  padding-top: 5px;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
   display: inline-block;
   text-decoration: none;
-  background: #43a1f7;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #43a1f7), color-stop(1, #377ad0));
-  background: -webkit-linear-gradient(top, #43a1f7 0%, #377ad0 100%);
-  background: -moz-linear-gradient(top, #43a1f7 0%, #377ad0 100%);
-  background: linear-gradient(top, #43a1f7 0%, #377ad0 100%);
-  border: 1px solid #2e70c4;
-  -webkit-border-radius: 16px;
-  -moz-border-radius: 16px;
-  border-radius: 16px;
-  color: #fff;
+  background: #ffddad;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f3c56d), color-stop(1, #d18527));
+  background: -webkit-linear-gradient(top, #f3c56d 0%, #d18527 100%);
+  background: -moz-linear-gradient(top, #f3c56d 0%, #d18527 100%);
+  background: linear-gradient(top, #f3c56d 0%, #d18527 100%);
+  border: 1px solid #814900;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: #785015;
   font-family: "lucida grande", sans-serif;
   font-size: 11px;
   font-weight: normal;
   line-height: 1;
   padding: 3px 10px 5px 10px;
   text-align: center;
-  text-shadow: 0 -1px 1px #2d6dc0;
+  text-shadow: 0 -1px 1px #ecb572;
 }
 button:hover,
 button.hover {
   background: darker;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #43a1f7), color-stop(1, #2e70c4));
-  background: -webkit-linear-gradient(top, #43a1f7 0%, #2e70c4 100%);
-  background: -moz-linear-gradient(top, #43a1f7 0%, #2e70c4 100%);
-  background: linear-gradient(top, #43a1f7 0%, #2e70c4 100%);
-  border: 1px solid #2e70c4;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #b96f10), color-stop(1, #814900));
+  background: -webkit-linear-gradient(top, #b96f10 0%, #814900 100%);
+  background: -moz-linear-gradient(top, #b96f10 0%, #814900 100%);
+  background: linear-gradient(top, #b96f10 0%, #814900 100%);
+  border: 1px solid #814900;
   cursor: pointer;
-  text-shadow: 0 -1px 1px #2c6bbb;
+  color: #ffffff;
+  text-shadow: 0 -1px 1px #ecb572;
 }
 button:active,
 button.active {
