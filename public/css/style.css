@@ -12,81 +12,94 @@ body {
 .logo { position: relative; top: 38px; left: 348px; height: 128px; width: 312px; padding: 0; margin:0 }
 .window { position: relative; background: url("../img/window.jpg") #fff; top: 42px; left: 260px; height: 460px; width: 479px;}
 
-#chat { position: relative; top: 20px; left: 30px; width: 420px;}
+.clear { clear: both; }
 
-#messages {
-  height: 310px;
-  background: #fff;
-}
-#messages em {
-  text-shadow: 0 1px 0 #fff;
-  color: #999;
-}
-#messages p {
-  padding: 0;
-  margin: 0;
-  font: 12px Helvetica, Arial;
-  padding: 5px 10px;
-}
-#messages p b {
-  display: inline-block;
-  padding-right: 10px;
-}
-#messages p:nth-child(even) {
-  background: #fafafa;
-}
-#messages #lines {
-  height: 310px;
-  overflow: auto;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-#messages #lines::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-#messages #lines::-webkit-scrollbar-button:start:decrement,
-#messages #lines ::-webkit-scrollbar-button:end:increment {
+#chat { position: absolute; top: 20px; left: 30px; width: 420px; overflow: auto;}
+
+#nickname,
+#connecting {
+  position: absolute;
+  height: 120px;
+  z-index: 100;
+  left: 50px;
+  top: 150px;
+  background: #caebfd;
+  text-align: center;
+  width: 300px;
+  font: 15px Georgia;
+  color: #000;
   display: block;
-  height: 10px;
-}
-#messages #lines::-webkit-scrollbar-button:vertical:increment {
-  background-color: #fff;
-}
-#messages #lines::-webkit-scrollbar-track-piece {
-  background-color: #fff;
-  -webkit-border-radius: 3px;
-}
-#messages #lines::-webkit-scrollbar-thumb:vertical {
-  height: 50px;
-  background-color: #ccc;
-  -webkit-border-radius: 3px;
-}
-#messages #lines::-webkit-scrollbar-thumb:horizontal {
-  width: 50px;
-  background-color: #fff;
-  -webkit-border-radius: 3px;
+  border: 1px dotted;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
-#l_message {margin: 0 15px; vertical-align: top; display: inline-block;}
+#nickname .wrap,
+#connecting .wrap {
+  padding-top: 10px;
+}
+
+#connecting.connected {
+  display: none;
+}
+
+#nickname input {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+#nickname input:focus {
+  border-color: #999;
+  outline: 0;
+}
+#nickname #nickname-err {
+  color: #8b0000;
+  font-size: 12px;
+  visibility: hidden;
+}
+.nickname-set #nickname {
+  display: none;
+}
+
+#messages { overflow: auto; width: 420px; height: 312px; display: block;}
+
+.ava { width: 42px; height: 42px; background-image: url('../img/ico.png'); float: left;}
+
+#l_message {margin: 0 15px; vertical-align: top;}
+#l_message .ava { background-position: -43px -24px;}
 #l_message img {float:left;}
 #l_msg {
   background-color: #fcacb9; 
   color: #000; 
+  max-width: 314px;
   padding: 10px 10px;
-  margin: 0 0 10px 58px;
+  margin: 0 0 10px 0px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  float: left;
   }
 
-#a_message {margin: 0 15px; vertical-align: top; display: inline-block; float: right;}
+#a_message {margin: 0 15px; vertical-align: top;}
 #a_message img {float:right;}
+#a_message .ava { background-position: 0px -24px; float: right;}
 #a_msg {
-  background-color: #ade0ff; 
+  max-width: 314px;
+  background-color: #acdffd; 
   color: #000; 
   padding: 10px 10px;
-  margin: 0 61px 10px 0;
+  margin: 0 0px 10px 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  float: right;
+  }
+
+#sys_message {
+  background-color: #caebfd; 
+  color: #000; 
+  padding: 10px 10px;
+  margin: 0 10px 10px 10px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -96,7 +109,7 @@ body {
 #send-message {
   height: 60px;
   margin: 0 10px;
-  background: #dfb0a8;
+  background: #e07388;
   position: relative;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -115,11 +128,25 @@ body {
 #message:focus {
   outline: 0;
 }
+#send-message {}
 
-#heart, #hellowin, #shop, #garbage, #phone { width: 22px; margin: 3px 5px;}
-input#sms {width: 20px; height: 20px; }
+#send-message .ico {
+width: 22px;
+height: 22px;
+margin-left: 7px;
+background-image: url('../img/ico.png');
+float: left;
+}
 
-#send-message span {font-size: 12px; color: #fff }
+.ico#heart {background-position: 0px 0px;}
+.ico#hellowin {background-position: -29px 0px;}
+.ico#shop {background-position: 82px 0px;}
+.ico#garbage {background-position: 52px 0px;}
+.ico#phone {background-position: 22px 0px;}
+
+input#sms { margin-left: 12px; }
+
+#send-message span {vertical-align: middle; margin-left: 5px; font-size: 12px; color: #fff }
 
 #send-message button {
 float: right

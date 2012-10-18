@@ -8,38 +8,113 @@ html(lang='ru-RU')
     link(href='css/bootstrap.min.css', rel='stylesheet')
     link(href='css/bootstrap-responsive.min.css', rel='stylesheet')
     link(href='css/style.css', rel='stylesheet')
-    script(src='js/jquery-1.7.1.min.js')
-    script(src='js/bootstrap.js')
+    script(src='js/jquery-1.8.2.min.js')
+    script(src='js/socket.io.min.js')
     //if lt IE 9
       script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
+    script
+      // socket.io specific code
+      var socket = io.connect();
+      var me;
+
+      socket.on('connect', function () {
+        $('#connecting').addClass('connected');
+      });
+
+      socket.on('announcement', function (msg) {
+        var html = '<div id="sys_message">'+msg+'</div>';
+        $('#messages').append(html);
+      });
+
+      socket.on('user message', message);
+
+      socket.on('reconnect', function () {
+        $('#messages').remove();
+        message('System', 'Reconnected to the server');
+      });
+
+      socket.on('reconnecting', function () {
+        message('System', 'Attempting to re-connect to the server');
+      });
+
+      socket.on('error', function (e) {
+        message('System', e ? e : 'A unknown error occurred');
+      });
+
+      function message (from, msg) {
+        var html;
+        if (from == 'a') html = '<div id="a_message"><div class="ava"></div><img src="img/a_chat.png"/><div id="a_msg">'+msg+'</div><div class="clear"></div></div>';
+        else if (from == 'l') html = '<div id="l_message"><div class="ava"></div><img src="img/l_chat.png"/><div id="l_msg">'+msg+'</div><div class="clear"></div></div>';
+        else html = '<div id="sys_message">'+msg+'</div>';
+        $('#messages').append(html);
+      }
+
+      // dom manipulation
+      $(function () {
+        $('#set-nickname').submit(function (ev) {
+          socket.emit('nickname', $('#nick').val(), function (set) {
+            if (!set) {
+              clear();
+              me = $('#nick').val();
+              return $('#chat').addClass('nickname-set');
+            }
+            $('#nickname-err').css('visibility', 'visible');
+          });
+          return false;
+        });
+
+        $('#send-message').submit(function () {
+          message(me, $('#message').val());
+          socket.emit('user message', $('#message').val());
+          clear();
+          $('#messages').get(0).scrollTop = 10000000;
+          return false;
+        });
+
+        function clear () {
+          $('#message').val('').focus();
+        };
+      });
   body
     .wrapper.container
       .logo
         img(src='img/logo.jpg', alt='Пинза.Ру')
       .window
         #chat
+          #nickname
+            form.wrap#set-nickname
+              p Please type in your nickname and press enter.
+              input#nick
+              p#nickname-err Nickname already in use
+          #connecting
+            .wrap Соединяюсь с сервером...
           #messages
             #l_message
-              img(src="img/lesya_av.jpg", alt="Леся")
+              .ava
               img(src="img/l_chat.png")
               div#l_msg Привет, родное сердце! Как всегда, я опоздада на поезд, а он не пришел!
+              .clear
             #a_message
-              img(src="img/andrey_av.jpg", alt="Андрей")
+              .ava
               img(src="img/a_chat.png")
-              div#a_msg Привет, родное сердце! Ничего, я все равно тебя жду, проголодался очень!!   
+              div#a_msg Привет, родное сердце! Ничего, я все равно тебя жду, проголодался очень!!
+              .clear
+            #sys_message Соединение разорвано!
             #l_message
-              img(src="img/lesya_av.jpg", alt="Леся")
+              .ava
               img(src="img/l_chat.png")
-              div#l_msg Хорошо, еду!
+              #l_msg Хорошо, еду!
+              .clear
           form#send-message
             input#message
-            input#heart(type="image", src="img/heart.png")
-            input#hellowin(type="image", src="img/hellowin.png")
-            input#shop(type="image", src="img/shopping.png")
-            input#garbage(type="image", src="img/garbage.png")
-            input#phone(type="image", src="img/phone.png")
+            .ico#heart
+            .ico#hellowin
+            .ico#shop
+            .ico#garbage
+            .ico#phone
             input#sms(type="checkbox")
-            span Дублировать по SMS
+            span
+              b Дублировать по SMS
             button Отправить
 
         
