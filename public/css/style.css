@@ -19,10 +19,10 @@ body {
 #nickname,
 #connecting {
   position: absolute;
-  height: 120px;
+  height: 180px;
   z-index: 100;
-  left: 50px;
-  top: 150px;
+  left: 60px;
+  top: 70px;
   background: #caebfd;
   text-align: center;
   width: 300px;
@@ -52,7 +52,7 @@ body {
   border-color: #999;
   outline: 0;
 }
-#nickname #nickname-err {
+#nickname .nickname-err {
   color: #8b0000;
   font-size: 12px;
   visibility: hidden;
@@ -84,9 +84,9 @@ body {
 #a_message img {float:right;}
 #a_message .ava { background-position: 0px -24px; float: right;}
 #a_msg {
-  max-width: 314px;
   background-color: #acdffd; 
-  color: #000; 
+  color: #000;
+  max-width: 314px;
   padding: 10px 10px;
   margin: 0 0px 10px 0;
   -webkit-border-radius: 5px;
@@ -114,6 +114,7 @@ body {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
+  visibility: hidden;
 }
 #message {
   border: none;
@@ -128,7 +129,6 @@ body {
 #message:focus {
   outline: 0;
 }
-#send-message {}
 
 #send-message .ico {
 width: 22px;

@@ -48,17 +48,23 @@ html(lang='ru-RU')
         else html = '<div id="sys_message">'+msg+'</div>';
         $('#messages').append(html);
       }
+      
+      function putmsg(msg) {
+        $('#message').val(msg).focus();
+      }
 
       // dom manipulation
       $(function () {
         $('#set-nickname').submit(function (ev) {
-          socket.emit('nickname', $('#nick').val(), function (set) {
+        
+          socket.emit('nickname', {login:$('#nick').val(), pass:$('#pwd').val()} , function (set) {
             if (!set) {
               clear();
               me = $('#nick').val();
+              $('#send-message').css('visibility', 'visible');
               return $('#chat').addClass('nickname-set');
             }
-            $('#nickname-err').css('visibility', 'visible');
+            $('.nickname-err').css('visibility', 'visible');
           });
           return false;
         });
@@ -83,35 +89,22 @@ html(lang='ru-RU')
         #chat
           #nickname
             form.wrap#set-nickname
-              p Please type in your nickname and press enter.
+              p Секретный сайт семьи Пинзару. Представьтесь!
               input#nick
-              p#nickname-err Nickname already in use
+              input#pwd(type="password")
+              button Enter
+              p.nickname-err 
+              p.nickname-err Неверное имя или пароль
           #connecting
             .wrap Соединяюсь с сервером...
           #messages
-            #l_message
-              .ava
-              img(src="img/l_chat.png")
-              div#l_msg Привет, родное сердце! Как всегда, я опоздада на поезд, а он не пришел!
-              .clear
-            #a_message
-              .ava
-              img(src="img/a_chat.png")
-              div#a_msg Привет, родное сердце! Ничего, я все равно тебя жду, проголодался очень!!
-              .clear
-            #sys_message Соединение разорвано!
-            #l_message
-              .ava
-              img(src="img/l_chat.png")
-              #l_msg Хорошо, еду!
-              .clear
           form#send-message
             input#message
-            .ico#heart
-            .ico#hellowin
-            .ico#shop
-            .ico#garbage
-            .ico#phone
+            .ico#heart(onclick="putmsg('Я тебя люблю!!!')")
+            .ico#hellowin(onclick="putmsg('Ненавижу тебя!!!')")
+            .ico#shop(onclick="putmsg('Сходи в магазин, заец!')")
+            .ico#garbage(onclick="putmsg('Котенок, мусор переполнился, вынеси!')")
+            .ico#phone(onclick="putmsg('Позвони мне!!!')")
             input#sms(type="checkbox")
             span
               b Дублировать по SMS

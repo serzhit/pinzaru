@@ -38,20 +38,25 @@ server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
 
-var nicknames = {};
+/** Password database :) */
+var nicknames = {'a':'1234', 'l':'4321'};
+
 io.sockets.on('connection', function (socket) {
   socket.on('user message', function (msg) {
     socket.broadcast.emit('user message', socket.nickname, msg);
   });
 
   socket.on('nickname', function (nick, fn) {
-    if (nicknames[nick]) {
+    if (nicknames[nick.login]!=nick.pass) {
       fn(true);
     } else {
       fn(false);
-      nicknames[nick] = socket.nickname = nick;
-      socket.broadcast.emit('announcement', nick + ' connected');
-      io.sockets.emit('nicknames', nicknames);
+//      nicknames[nick.login] = nick.pass;
+//      socket.nickname = nick.login;
+      if (nick.login == 'a') socket.broadcast.emit('announcement', 'Андрей онлайн!');
+      else if (nick.login == 'l') socket.broadcast.emit('announcement', 'Леся онлайн!');
+      else socket.broadcast.emit('announcement', 'Гость онлайн!');
+//      io.sockets.emit('nicknames', nicknames);
     }
   });
 
